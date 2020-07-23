@@ -38,6 +38,10 @@ function updateSelectedCount(){
 //Movie select event - when you change the movie the total should update
 movieSelect.addEventListener('change', e => {
     ticketPrice = +e.target.value
+    // console.log(e.target.selectedIndex, e.target.value) 
+    //the select tag has within it option tags. Think of the select tag as an array and 
+    //the number of options within it as elements within an array
+    //.value gives us the value (price) that we have put within the option tags 
     setMovieData(e.target.selectedIndex, e.target.value)
     updateSelectedCount()
 })
