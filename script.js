@@ -8,10 +8,27 @@ const movieSelect = document.getElementById('movie') //Gets the select element a
 let ticketPrice = +movieSelect.value //this will have the value. It is also a string. So i will add a + to turn it into a number
 
 
+//Save selected movie index and price
+
+function setMovieData(movieIndex, moviePrice){
+    localStorage.setItem('selectedMovieIndex', movieIndex);
+    localStorage.setItem('selectedMoviePrice', moviePrice);
+}
+
+
 //Update total and count
 
 function updateSelectedCount(){
     const selectedSeats = document.querySelectorAll('.row .seat.selected')
+
+    const seatsIndex = [...selectedSeats].map((seat) => {
+        return [...seats].indexOf(seat)
+    }) 
+    localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex))
+
+
+
+
     const selectedSeatsCount = selectedSeats.length;
     count.innerText = selectedSeatsCount
     total.innerText = selectedSeatsCount * ticketPrice
@@ -21,6 +38,7 @@ function updateSelectedCount(){
 //Movie select event - when you change the movie the total should update
 movieSelect.addEventListener('change', e => {
     ticketPrice = +e.target.value
+    setMovieData(e.target.selectedIndex, e.target.value)
     updateSelectedCount()
 })
 
