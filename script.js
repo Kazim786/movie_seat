@@ -5,12 +5,16 @@ const count = document.getElementById('count')
 const total = document.getElementById('total')
 const movieSelect = document.getElementById('movie') //Gets the select element as well as all the options
 
+populateUi()
+
 let ticketPrice = +movieSelect.value //this will have the value. It is also a string. So i will add a + to turn it into a number
+
 
 
 //Save selected movie index and price
 
 function setMovieData(movieIndex, moviePrice){
+    //get and set
     localStorage.setItem('selectedMovieIndex', movieIndex);
     localStorage.setItem('selectedMoviePrice', moviePrice);
 }
@@ -26,14 +30,29 @@ function updateSelectedCount(){
     }) 
     localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex))
 
-
-
-
     const selectedSeatsCount = selectedSeats.length;
     count.innerText = selectedSeatsCount
     total.innerText = selectedSeatsCount * ticketPrice
 }
 
+//Get data from localstorage and populate UI
+
+function populateUi(){
+    //get and set methods
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'))
+    if(selectedSeats !== null && selectedSeats.length > 0){
+        seats.forEach((seat, index) => {
+            //if indexOf is -1 that means the element doesnt exist. Thats why our boolean is checking for greater than -1
+            if(selectedSeats.indexOf(index) > -1){
+                seat.classList.add('selected')
+            }
+        })
+    }
+    const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+    if(selectedMovieIndex !== null){
+        movieSelect.selectedIndex = selectedMovieIndex;
+    }
+}
 
 //Movie select event - when you change the movie the total should update
 movieSelect.addEventListener('change', e => {
@@ -63,3 +82,7 @@ container.addEventListener('click', (e) => {
 
     } 
 })
+
+//Initial count and total set
+
+updateSelectedCount()
