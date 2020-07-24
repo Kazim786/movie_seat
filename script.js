@@ -55,7 +55,7 @@ function populateUi(){
     if(selectedMovieIndex !== null){
     //selectedIndex is a property which either sets or returns the index of the selected option in a drop-down list. 
     //Remember that the options are like elements within an array
-        movieSelect.selectedIndex = selectedMovieIndex;
+        movieSelect.selectedIndex = selectedMovieIndex; //This will keep the selectedIndex the same after it has been selected
     }
 }
 
