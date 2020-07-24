@@ -39,6 +39,7 @@ function updateSelectedCount(){
 
 function populateUi(){
     //get and set methods
+    //So the seats are shown as they are saved in local storage
     const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'))
     if(selectedSeats !== null && selectedSeats.length > 0){
         seats.forEach((seat, index) => {
@@ -48,6 +49,8 @@ function populateUi(){
             }
         })
     }
+    
+    //So movie index is shown in the UI as it is saved in local storage
     const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
     if(selectedMovieIndex !== null){
         movieSelect.selectedIndex = selectedMovieIndex;
