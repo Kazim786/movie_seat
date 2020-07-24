@@ -53,6 +53,8 @@ function populateUi(){
     //So movie index is shown in the UI as it is saved in local storage
     const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
     if(selectedMovieIndex !== null){
+    //selectedIndex is a property which either sets or returns the index of the selected option in a drop-down list. 
+    //Remember that the options are like elements within an array
         movieSelect.selectedIndex = selectedMovieIndex;
     }
 }
